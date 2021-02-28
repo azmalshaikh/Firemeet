@@ -1,0 +1,104 @@
+<!-- HTML File -->
+<!-- Embedded JS -->
+<!-- We get Variable from backend to frontend-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const ROOM_ID = "<%= roomId %>";
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+</head>
+<body>
+    <div class="main">
+
+        <div class="main__left">
+            <div class="main__videos">
+                <div id="video-grid">
+                    
+                </div> 
+            </div>
+
+            <!-- <div class="main__videos">
+                <div id="screen-video-grid">
+                    
+                </div> 
+            </div> -->
+
+            <div class="main__controls">
+
+                <div class="main__controls__block">
+                    <div class="main__controls__button">                      
+                        <span>Meeting details <i class="fas fa-chevron-up"></i></span>
+                    </div>
+                </div>
+
+                <div class="main__controls__block">
+                    <!-- // Mic -->
+                    <div onclick="muteUnmute()" class="main__controls__button main__mute_button"  title="Turn off Microphone">
+                        <i class="fas fa-microphone"></i>
+                        <!-- <i class="fas fa-microphone-slash"></i> -->
+                    </div>
+
+                    <!-- // End Call -->
+                    <div class="padding"></div> 
+                    <div class="main__controls__button" title="Leave call">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#cc3b33"><path d="M148.3444,106.77214c-0.69987,0.72786 -0.69987,0.72786 -1.42774,0.72786c-0.72786,0 -3.58333,0 -5.01107,-1.42774c-1.42773,-0.72786 -3.58333,-2.88346 -5.73893,-4.31119c-2.1556,-1.42774 -9.32226,-6.43881 -13.60547,-8.5944c-4.3112,-2.1556 -6.4668,-2.85547 -7.16667,-6.4388c-0.72787,-3.58333 -0.72787,-20.80013 -0.72787,-20.80013c0,0 -7.16667,-1.42774 -12.9056,-2.1556c-5.73893,-0.69988 -13.60547,-1.42774 -22.19987,-0.69988c-8.6224,0.69988 -16.48894,1.42774 -24.38347,4.28321c0,10.05012 0,18.64453 0,20.80012c0,2.1556 0,2.85547 -2.85547,4.28321c-2.88346,1.45573 -7.89453,3.58333 -11.47786,6.46679c-3.58333,2.85547 -7.86653,5.73894 -10.02214,7.86654c-2.88346,1.45573 -2.88346,0.72786 -4.31119,0.72786c-1.42774,0 -3.58333,-0.72786 -4.2832,-1.42774c-0.72787,0 -1.45573,-1.42773 -6.4668,-6.46679c-4.2832,-4.28321 -10.75,-10.75 -12.17774,-12.17774c-1.42774,-1.42774 -1.42774,-1.42774 -2.1556,-2.85547l-1.42774,-2.88346c0,-0.69988 0.72787,-3.58333 2.1556,-5.01107c1.42774,-1.42774 6.43881,-5.73893 10.02214,-8.5944c3.58333,-2.85547 14.33333,-9.32226 18.64453,-11.47786c4.28321,-2.1276 18.61654,-9.29427 39.41667,-12.17774c21.5,-2.85547 42.27214,0.72786 56.60547,5.01107c14.33333,5.03906 27.9668,13.63346 34.4056,17.91667c6.43881,4.31119 8.5944,6.46679 9.32226,8.6224c1.42774,2.1276 0.69988,4.2832 0.69988,5.71094c-0.69988,1.45573 -1.42774,2.88346 -2.85547,4.31119c-1.42774,1.42774 -5.01107,5.01107 -10.02213,10.02214c-4.3112,5.03906 -10.05013,10.75 -10.05013,10.75z"></path></g></g></svg>
+                    </div>
+
+                    <!-- Video -->
+                    <div class="padding"></div> 
+                    <div onClick="playStop()" class="main__controls__button main__video_button" title="Turn off Camera">
+                        <i class="fas fa-video"></i>
+                    </div>
+                </div>
+
+                <div class="main__controls__block">
+                    <div class="main__controls__button main__screen_button" onclick="shareScreen()">
+                        <i class="far fa-caret-square-up"></i>
+                        <span>Present Now</span>
+                    </div>
+
+                    <!-- <div class="main__controls__button">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Participants</span>
+                    </div> -->
+
+                    <div class="main__controls__button">
+                        <i class="fas fa-comment-alt"></i>
+                        <span>Chat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main__right">
+            <div class="main__header">
+                <h3>Chat</h3>
+            </div>
+
+            <div class="main__chat_window">
+                <ul class="messages">
+
+                </ul>
+            </div>
+            <div class="main__message_container">
+                <input id="chat_message" type="text" placeholder="Send a message to everyone">
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
